@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% include "header.html" %}
+  
+	<style> 
+    table { 
+         font-family: arial, sans-serif; 
+         border-collapse: collapse;
+         width: 600px; 
+         }
+
+     td, th { 
+         border: 1px solid #dddddd; 
+         text-align: center; 
+         padding: 4px; 
+         color: rgb(255, 255, 255); 
+         font-size: 20px;
+         }
+
+     tr:nth-child(even) { 
+         background-color: #3b1818; }
+   
+      .table_title {
+        color:white;
+        padding-bottom: 10px;
+        font-size: 26px;
+      }
+     </style>
+
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  {% include "nav.html" %}
+	
+	
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="container h-100">
+        
+        <div class="row align-items-center justify-content-center text-center" style="margin-top: 100px;">
+            <span class="table_title">Edit Student Page</span>
+        </div>
+      <div class="row align-items-center justify-content-center text-center">
+        
+        <form action="http://127.0.0.1:5000\edit" method="post">
+          <table>
+            <tr>
+              <th>Student Name:</th>
+              <td><input type="text" name="t_name" placeholder="required" value="Hoa"></td>
+            </tr>
+            <tr>
+              <th>Class:</th>
+              <td><input type="text" name="t_latitude" placeholder="required" value="Fansipan"></td>
+            </tr> 
+            <tr>
+              <th>Date:</th>
+              <td><input type="text" name="t_longitude" placeholder="required" value="04-Oct-2019"></td>
+            </tr>
+            <tr>
+              <th><a type="submit" value="Confirm" class="btn btn-primary" onclick="goBack()">Cancle</a></th>
+              <td><a type="reset" value="Cancle" class="btn btn-primary" onclick="goBack()">Confirm</td>
+            </tr>
+          </table>
+        <table id="employees">
+
+          {% if result %}
+          <tr>
+              <!-- <th>No</th> -->
+              <th>Student Name</th>
+              <th>Class Name</th>
+              <th>Attend Date</th>
+              <th>Edit</th>
+          </tr>
+          {% for name in result.student_names %}
+            <tr>
+                <!-- <td> </td> -->
+                <td> {{ name }}</td>
+                <td> {{ result.class_name }}</td>
+                <td> {{ result.attend }}</td>
+                <td> <input type="submit" value="Edit" class="btn btn-primary"> </td>
+            </tr>
+           
+          {% endfor %}
+          {% endif %}
+        </table>
+      </div>
+
+  </header>
+
+  {% include "footer_scripts.html" %}
+
+</body>
+
+</html>
